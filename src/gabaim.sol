@@ -16,6 +16,7 @@ contract beitHKenesset {
 
     function withDraw(uint256 amount) external {
         require(msg.sender==owner||gabaim[msg.sender]==true);
+        require(address(this).balance >= amount,"not enough eth to withdraw");
         payable(msg.sender).transfer(amount);
     }
 
