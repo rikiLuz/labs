@@ -21,6 +21,7 @@ contract beitHKenesset {
 
     function changeGabay(address old_gabay , address new_gabay) public {
         require (msg.sender==owner,"you...");
+        require (gabaim[new_gabay]==false, "you already inside")
         gabaim[old_gabay]=false;
         gabaim[new_gabay]=true;
     }
