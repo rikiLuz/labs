@@ -1,0 +1,8 @@
+shape: sequence_diagram
+Alice -> lido: sends ETH 
+Lido -> Ethereum network: takes Alice's ETH .
+Ethereum network -> alice:receives stETH (Lido's staked ETH token) representing her staked ETH and earns staking rewards passively. 
+Alice -> other : can transfer, trade, or lend stETH without affecting her staked ETH. 
+Bob -> Aave: deposits DAI
+Aave -> Charles: borrows USDC
+Charles -> Aave : offering DAI as collateral.
