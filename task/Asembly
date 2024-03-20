@@ -1,0 +1,62 @@
+A.
+Insert:
+PUSH1 0x40
+PUSH1 0X30
+DUP1
+POP
+
+Output:
+30
+40
+
+B.
+Insert:
+PUSH1 0x20
+PUSH1 0X40
+PUSH1 0X10
+DUP1
+ADD 
+ADD
+ADD
+
+Output:
+80
+
+c.
+Insert:
+PUSH1 0x20
+PUSH2 0X40
+LT
+
+Output:
+0
+
+D.
+Insert:
+PUSH1 0X30
+PUSH1 0X10
+PUSH3 0X100
+DUP1
+POP
+PUSH3 0X90
+LT
+
+Output:
+1
+10
+30
+
+E.
+insert:
+PUSH1 0X30
+PUSH1 0X10
+DUP1
+POP
+DUP1
+POP
+LT
+
+Output:
+1
+
+
