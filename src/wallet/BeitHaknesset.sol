@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-contract beitHKenesset {
+contract BeitHKenesset {
     address payable public owner;
     mapping(address => bool) public gabaim;
 
