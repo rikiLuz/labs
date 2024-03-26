@@ -75,24 +75,22 @@ function testChangeGabay() public {
 }
 
 function testNotChangeGabay() public {
-    address
+    address userAddress = vm.addr(13);
     address old_gabay = 0x7ae3DbAC75D264B6F6976639ebBfC645601D3F15;
     address new_gabay = 0x57C91e4803E3bF32c42a0e8579aCaa5f3762af71;
 
-    vm.startPrank(owner);
-    wallet.changeGabay(old_gabay,new_gabay);
+    vm.startPrank(userAddress);
     vm.expectRevert();
-
     wallet.changeGabay(old_gabay,new_gabay);
-    assertEq(wallet.gabaim(new_gabay), true);
-    assertEq(wallet.owner(), 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496);
-    assertEq(wallet.gabaim(old_gabay), false);
 
+    assertEq(wallet.gabaim(old_gabay), true);
     vm.stopPrank();
 
 }
 
-
+function testgetBalance() public {
+    assertEq(wallet.getBalance(), 100, "not equals");
+}
     
 
 }
