@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.15;
 
-contract beitHKenesset {
+contract BeitHaknesset {
     address payable public owner;
     mapping(address => bool) public gabaim;
 
@@ -21,10 +21,10 @@ contract beitHKenesset {
     }
 
     function changeGabay(address old_gabay , address new_gabay) public {
-        require (msg.sender==owner,"you...");
-        require (gabaim[new_gabay]==false, "you already inside")
-        gabaim[old_gabay]=false;
-        gabaim[new_gabay]=true;
+        require (msg.sender==owner,"you are not owner");
+        require (gabaim[new_gabay]==false, "you already inside");
+        gabaim[old_gabay] = false;
+        gabaim[new_gabay] = true;
     }
 
     function getBalance() public view returns (uint256) {

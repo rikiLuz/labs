@@ -1,12 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.15;
+import "forge-std/console.sol";
 
-contract BeitHKenesset {
+contract BeitHaknesset {
     address payable public owner;
     mapping(address => bool) public gabaim;
 
     constructor( address gabay1 , address gabay2, address gabay3) {
         owner = payable (msg.sender);
+        console.log(owner);
         gabaim[gabay1]=true;
         gabaim[gabay2]=true;
         gabaim[gabay3]=true;
@@ -15,14 +17,14 @@ contract BeitHKenesset {
     receive() external payable {}
 
     function withDraw(uint256 amount) external {
-        require(msg.sender==owner||gabaim[msg.sender]==true);
+        require(msg.sender==owner || gabaim[msg.sender]==true , "you not allowd");
         require(address(this).balance >= amount,"not enough eth to withdraw");
         payable(msg.sender).transfer(amount);
     }
 
     function changeGabay(address old_gabay , address new_gabay) public {
         require (msg.sender==owner,"you...");
-        require (gabaim[new_gabay]==false, "you already inside")
+        require (gabaim[new_gabay]==false, "you already inside");
         gabaim[old_gabay]=false;
         gabaim[new_gabay]=true;
     }
