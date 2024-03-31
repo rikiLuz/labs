@@ -5,11 +5,8 @@ import "foundry-huff/HuffDeployer.sol";
 import "forge-std/Test.sol";
 import "forge-std/console.sol";
 import "@hack/store/store.sol";
-<<<<<<< HEAD:test/wallet/walletFuzzTest.t.sol
+
 import "../../src/wallet/gabaim.sol";
-=======
-import "../../../src/wallet/BeitHaknesset.sol";
->>>>>>> 9c60e68 (fuzzTest):test/store/wallet/walletFuzzTest.t.sol
 
 contract BeitHaknessetFuzzTest is Test{
     BeitHaknesset public wallet;
