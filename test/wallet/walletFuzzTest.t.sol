@@ -7,33 +7,30 @@ import "forge-std/console.sol";
 import "@hack/store/store.sol";
 import "../../src/wallet/gabaim.sol";
 
-contract BeitHaknessetTest is Test{
+contract BeitHaknessetFuzzTest is Test{
     BeitHaknesset public wallet;
     
 
-function setUp() public {
-    address gabay1 = 0x7ae3DbAC75D264B6F6976639ebBfC645601D3F15; //itty fishman
-    address gabay2 = 0xaC4E320Ed1235F185Bc6AC8856Ec7FEA7fF0310d; //meira
-    address gabay3 = 0xad0091676Fa9631e1A74fE12E4a34325D1EdEB84; //homri
+function setUp(address gabay1, address gabay2, address gabay3 ) public {
     wallet = new BeitHaknesset(gabay1, gabay2, gabay3);
     payable(address(wallet)).transfer(100);
 }
 
-function testReceive() public{
+function fuzzTestReceive(uint256 amount) public{
+    console.log(amount);
     address userAddress = vm.addr(1234);
-    uint amount =100;
     vm.deal(userAddress, amount); //put money in randomAddress
     vm.startPrank(userAddress);
     uint256 initialBalance = address(wallet).balance; 
     payable(address(wallet)).transfer(50);
     uint256 currentBalance = address(wallet).balance;
-    assertEq(initialBalance + 50,currentBalance);
+    assertEq(initialBalance + 50,currentBalance,"not equal");
     vm.stopPrank();
 }
 
 
- function testNotAllowedWithDraw() public{
-    uint256 amount=50;
+ function fuzzTestNotAllowedWithDraw(uint256 amount) public{
+    console.log(amount);
     address userAddress= vm.addr(15);
     vm.startPrank(userAddress);
     uint256 initialWalletBalance = address(wallet).balance;
@@ -44,9 +41,7 @@ function testReceive() public{
     vm.stopPrank();
 }
 
-function testAllowedWithDraw() public{
-
-    address gabay= 0x7ae3DbAC75D264B6F6976639ebBfC645601D3F15;
+function fuzzTestAllowedWithDraw(address gabay) public{
     vm.startPrank(gabay);
     uint256 initialWalletBalance = address(wallet).balance;
     wallet.withDraw(50);
@@ -56,11 +51,8 @@ function testAllowedWithDraw() public{
 }
 
 
-function testChangeGabay() public {
-    address owner= 0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496;
-    address old_gabay = 0x7ae3DbAC75D264B6F6976639ebBfC645601D3F15;
-    address new_gabay = 0x57C91e4803E3bF32c42a0e8579aCaa5f3762af71;
-
+function fuzzTestChangeGabay(address owner, address old_gabay,address new_gabay) public {
+  
     vm.startPrank(owner);
     wallet.changeGabay(old_gabay,new_gabay);
     vm.expectRevert();
@@ -74,11 +66,7 @@ function testChangeGabay() public {
 
 }
 
-function testNotChangeGabay() public {
-    address userAddress = vm.addr(13);
-    address old_gabay = 0x7ae3DbAC75D264B6F6976639ebBfC645601D3F15;
-    address new_gabay = 0x57C91e4803E3bF32c42a0e8579aCaa5f3762af71;
-
+function fuzzTestNotChangeGabay(address userAddress,address old_gabay, address new_gabay) public {
     vm.startPrank(userAddress);
     vm.expectRevert();
     wallet.changeGabay(old_gabay,new_gabay);
@@ -88,7 +76,7 @@ function testNotChangeGabay() public {
 
 }
 
-function testgetBalance() public {
+function fuzzTestgetBalance() public {
     assertEq(wallet.getBalance(), 100, "not equals");
 }
     
