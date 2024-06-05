@@ -20,6 +20,7 @@ contract BeitHaknesset {
         require(msg.sender==owner||gabaim[msg.sender]==true);
         require(address(this).balance >= amount,"not enough eth to withdraw");
         payable(msg.sender).transfer(amount);
+        
     }
 
     function changeGabay(address old_gabay , address new_gabay) public {
@@ -27,9 +28,12 @@ contract BeitHaknesset {
         require (gabaim[new_gabay]==false, "you already inside");
         gabaim[old_gabay] = false;
         gabaim[new_gabay] = true;
+        
+        
     }
 
     function getBalance() public view returns (uint256) {
         return address(this).balance;
+    
     }
 }
