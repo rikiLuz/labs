@@ -1,0 +1,28 @@
+{
+    "CLI_version": "7.6.3",
+    "branch": "master",
+    "certora_ci_client": null,
+    "conf": {
+        "files": [
+            "ERC20.sol"
+        ],
+        "process": "emv",
+        "solc": "solc",
+        "verify": "ERC20:ERC20.spec"
+    },
+    "conf_path": null,
+    "cwd_relative": "src/certora",
+    "dirty": false,
+    "main_spec": "ERC20.spec",
+    "origin": "https://github.com/rikiLuz/labs.git",
+    "raw_args": [
+        "/home/user/.local/bin/certoraRun",
+        "ERC20.sol",
+        "--verify",
+        "ERC20:ERC20.spec",
+        "--solc",
+        "solc"
+    ],
+    "revision": "f04581dec42a41ac0229bdf5e2c8ae071029df2f",
+    "timestamp": "1717928898.904721"
+}
